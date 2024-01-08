@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>DASHBOARD</h1>
+
+<section class="income-expense">
+    <div class="container-fluid user-section">
+        <h4>Hello {{ user.first_name|capfirst }}</h4>
+        <table class="table table-borderless">
+            <form method="get" action="{% url 'budget:dashboard-list' %}">
+                <label>Search by Month: </label>
+                <input type="text" name="month" placeholder="YYYY-MM" value="{{ month }}">
+                <button class="btn btn-primary">Search</button>
+            </form>
+            <thead>
+            <tr>
+                <th scope="col">Income</th>
+                <th scope="col">Expenses</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${{total_income}}</td>
+                <td>${{total_expense}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</section>
+<br>
+<!--item Entries-->
+<section class="item-entry">
+   <h1 class="heading">BUDGET ENTRIES FOR MONTH</h1>
+   <div class="container-fluid">
+      <table class="table">
+      <thead>
+      {% if budget %}
+         <tr>
+<!--            <th scope="col">No</th>-->
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Income/Expenses</th>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+         </tr>
+      </thead>
+      <tbody>
+      {% for item in budget %}
+         <tr>
+<!--            <th scope="row">{{ item.id }}</th>-->
+            <td scope="row">{{ item.name }}</td>
+            <td scope="row">{{ item.description }}</td>
+            <td scope="row">{{ item.category.name }}</td>
+            <td scope="row">${{ item.amount }}</td>
+            <td scope="row">{{ item.date }}</td>
+            <td scope="row">{{ item.budget_choice }}</td>
+            <td scope="row"><button class="btn btn-success"><a href="{% url 'budget:update_budget' pk=item.id %}">Update</a></button></td>
+            <td scope="row"><button class="btn btn-danger"><a href="{% url 'budget:delete_budget' pk=item.id %}">Delete</a></button></td>
+         </tr>
+      {% endfor %}
+      {% else %}
+            <h4>No entries for the month</h4>
+        {% endif %}
+      </tbody>
+   </table>
+   </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
