@@ -62,7 +62,7 @@ class BudgetEntryFormView(LoginRequiredMixin,CreateView):
 
 class UpdateBudgetEntry(LoginRequiredMixin, UpdateView):
     model = Budget
-    fields = ('name', 'description', 'amount', 'category')
+    fields = ('budget_entry_name', 'description', 'amount', 'category')
     success_url = reverse_lazy('budget:dashboard-list')
     template_name = 'budget_update.html'
 

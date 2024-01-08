@@ -14,4 +14,4 @@ class BudgetEntryForm(forms.ModelForm):
 
     class Meta:
         model = Budget
-        fields = ('name', 'description', 'category', 'amount', 'budget_choice', 'month')
+        fields = ('budget_entry_name', 'description', 'category', 'amount', 'budget_choice', 'month')

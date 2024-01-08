@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 
 
 class BudgetAdmin(admin.ModelAdmin):
-    list_display = ('user','name', 'category', 'amount')
+    list_display = ('user','budget_entry_name', 'category', 'amount')
     list_editable = ('amount', )
     search_fields = ('name', 'category')
 

@@ -52,7 +52,7 @@ class Budget(models.Model):
     }
 
     user = models.ForeignKey(BudgetUser, on_delete=models.CASCADE, related_name='budget', default=1)
-    name = models.CharField(max_length=50)
+    budget_entry_name = models.CharField(max_length=50)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     amount = models.IntegerField()
